@@ -1,0 +1,45 @@
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
+.tg td{border-color:black;border-style:solid;border-width:2px;font-family:Calibri, sans-serif;font-size:16px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Calibri, sans-serif;font-size:16px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-tr-cell1{border-color:inherit;font-weight:bold;text-align:left;vertical-align:top;width:20%;}
+.tg .tg-tr-cell2{border-color:inherit;font-weight:bold;text-align:left;vertical-align:top;width:65%;}
+.tg .tg-tr-r2cell2{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-risk{border-color:inherit;font-weight:bold;text-align:center;vertical-align:top;width:15%;}
+</style>
+<table class="tg">
+<tbody>
+  <tr>
+    <td class="tg-tr-cell1">Identified Risk</td>
+    <td class="tg-tr-cell2"><%= @description %></td>
+    <% if @level == 'danger'%>
+    <td bgcolor="#EB3223" class="tg-risk">High</td>
+    <% else %>
+    <td bgcolor="#FFFD54" class="tg-risk">Low</td>
+    <% end %>
+  </tr>
+  <tr>
+    <td class="tg-tr-cell1">Description</td>
+    <td class="tg-tr-r2cell2" colspan="2"><%= @rationale %></td>
+  </tr>
+  <tr>
+    <td class="tg-tr-cell1">Remediation</td>
+    <% if @remediation && @references == "" %>
+    <td class="tg-tr-r2cell2" colspan="2">[[[WRITE SOMETHING HERE]]]</td>
+    <% elsif @remediation == "" %>
+    <td class="tg-tr-r2cell2" colspan="2">Please refer to the official documentation: <%= @references %></td>
+    <% else %>
+    <td class="tg-tr-r2cell2" colspan="2"><%= @remediation %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <td class="tg-tr-cell1">Number of Affected Resources</td>
+    <td class="tg-tr-r2cell2" colspan="2"><%= @flagged_items %> of <%= @checked_items %></td>
+  </tr>
+  <tr>
+    <td class="tg-tr-r2cell2" colspan="3"></td>
+  </tr>
+</tbody>
+</table>

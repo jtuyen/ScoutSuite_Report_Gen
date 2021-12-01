@@ -21,6 +21,7 @@ services.each { | aws_service |
             @references = ary2hash["references"].to_s
             # Push item to table of contents array
             @toc.push(@description)
+            @toc.push(@level)
             # Open table template for data insertion
             template = File.open('table.html.erb',"r:UTF-8",&:read)
             if @references.include? '["'

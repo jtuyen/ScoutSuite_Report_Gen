@@ -7,9 +7,9 @@ services = ["cloudsql","cloudstorage","computeengine","iam","kms","stackdriverlo
 file = File.read('gcp-formatted.json')
 data = JSON.parse(file)
 @toc = []
-services.each { | aws_service |
-    @toc.push('title-'+aws_service)
-    data["services"][aws_service]["findings"].each do | item |
+services.each { | gcp_service |
+    @toc.push('title-'+gcp_service)
+    data["services"][gcp_service]["findings"].each do | item |
         ary2hash = item[1].to_h
         if ary2hash["flagged_items"] > 0
             @level = ary2hash["level"].to_s
@@ -21,6 +21,7 @@ services.each { | aws_service |
             @references = ary2hash["references"].to_s
             # Push item to table of contents array
             @toc.push(@description)
+            @toc.push(@level)
             # Open table template for data insertion
             template = File.open('table.html.erb',"r:UTF-8",&:read)
             if @references.include? '["'

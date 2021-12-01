@@ -5,25 +5,28 @@
 .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
   font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg .tg-0lax{text-align:left;vertical-align:top}
-.tg .tg-0lax1{text-align:left;vertical-align:top;width:100%}
+.tg .tg-0lax1{text-align:left;vertical-align:top}
 </style>
 <table class="tg">
 <tbody>
-<% @toc.each do | item | %>
-<% if item.include? 'title-' %>
-<tr>
-<th class="tg-0lax1" colspan="2">
-<%= item %>
-</td>
-</tr>
-<% else %>
-<tr>
-<td class="tg-0lax"></td>
-<td class="tg-0lax">
-<%= item %>
-</td>
-</tr>
-<% end %>
+<% @toc.map.with_index do | item,index | %>
+  <% if item.include? 'title-' %>
+  <tr>
+  <th class="tg-0lax1" colspan="3"><%= item %></th>
+  </tr>
+  <% elsif item.include? 'warning' %>
+  <% elsif item.include? 'danger' %>
+  <% else %>
+  <tr>
+  <td class="tg-0lax"></td>
+  <td class="tg-0lax"><%= item %></td>
+  <% if @toc[index+1] == 'warning' %>
+  <td class="tg-0lax">Low</td> 
+  <% else %>
+  <td class="tg-0lax">High</td> 
+  </tr>
+  <% end %>
+  <% end %>
 <% end %>
 </tbody>
 </table>

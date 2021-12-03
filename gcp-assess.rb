@@ -3,6 +3,7 @@
 require 'json'
 require 'erb'
 
+Dir.mkdir('./output') unless File.exists?('./output')
 services = ["cloudsql","cloudstorage","computeengine","iam","kms","stackdriverlogging","stackdrivermonitoring","kubernetesengine"]
 file = File.read('gcp-formatted.json')
 data = JSON.parse(file)

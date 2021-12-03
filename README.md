@@ -1,6 +1,7 @@
 This is a Ruby script using two libraries: json for parsing ScoutSuite exported AWS/GCP data and erb for generating templates for reporting purposes.
 
 *Instructions*
+0. Install json library using `gem install json`
 1. After generating the AWS/GCP results using ScoutSuite, the "scoutsuite-results" folder contains a .js file which is the raw data. This file needs
    to be converted to a proper json format using this command:
 ```

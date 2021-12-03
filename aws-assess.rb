@@ -3,6 +3,7 @@
 require 'json'
 require 'erb'
 
+Dir.mkdir('./output') unless File.exists?('./output')
 services = ["acm", "awslambda", "cloudformation", "cloudtrail", "cloudwatch", "config", "directconnect", "dynamodb", "ec2", "efs", "elasticache", "elb", "elbv2", "emr", "iam", "kms", "rds", "redshift", "route53", "s3", "secretsmanager", "ses", "sns", "sqs", "vpc"]
 file = File.read('aws-formatted.json')
 data = JSON.parse(file)
